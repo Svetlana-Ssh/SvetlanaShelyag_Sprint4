@@ -60,8 +60,8 @@ public class MakeOrder {
         System.setProperty("webdriver.gecko.driver", "C:\\WebDriver\\bin\\geckodriver.exe");
 
         // выбор браузера для прогона тестов:
-        //driver = new ChromeDriver();
-        driver = new FirefoxDriver();
+        driver = new ChromeDriver();
+        //driver = new FirefoxDriver();
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
