@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 
 public class MainPage {
     private WebDriver driver;
-    private final String url = "https://qa-scooter.praktikum-services.ru/";
+    private final static String URL = "https://qa-scooter.praktikum-services.ru/";
 
     // Локатор кнопки для принятия куки:
     private final By acceptCookiesButton = By.id("rcc-confirm-button");
@@ -28,7 +28,7 @@ public class MainPage {
     }
 
     public void open() {
-        driver.get(url);
+        driver.get(URL);
     }
     // Метод кликает по кнопке акцепта куки, если эта кнопка отображается на странице:
     public void clickAcceptCookiesButton() {
