@@ -1,20 +1,14 @@
 package ru.yandex.prakticum.questionsandanswers;
 
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import ru.yandex.prakticum.main.BaseTest;
 import ru.yandex.prakticum.pom.MainPage;
 
-import java.time.Duration;
-
 @RunWith(Parameterized.class)
-public class CheckQAAParametrized {
+public class CheckQAAParametrized extends BaseTest {
     private final int index;
     private final String question;
     private final String answer;
@@ -40,19 +34,6 @@ public class CheckQAAParametrized {
         };
     }
 
-    private WebDriver driver;
-
-    @Before
-    public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "C:\\WebDriver\\bin\\chromedriver.exe");
-        System.setProperty("webdriver.gecko.driver", "C:\\WebDriver\\bin\\geckodriver.exe");
-
-        driver = new ChromeDriver();
-        //driver = new FirefoxDriver();
-
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-    }
-
     @Test
     public void shouldBeQAA() {
 
@@ -69,10 +50,5 @@ public class CheckQAAParametrized {
         mainPage.clickQuestion(index);
         Assert.assertEquals("Сравнение вопроса", question, mainPage.getQuestionText(index));
         Assert.assertEquals("Cравнение ответа",answer, mainPage.getAnswerText(index));
-    }
-
-    @After
-    public void tearDown() {
-        driver.quit();
     }
 }

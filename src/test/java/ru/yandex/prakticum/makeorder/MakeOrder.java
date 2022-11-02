@@ -1,22 +1,16 @@
 package ru.yandex.prakticum.makeorder;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import ru.yandex.prakticum.main.BaseTest;
 import ru.yandex.prakticum.pom.MainPage;
 import ru.yandex.prakticum.pom.OrderPage;
-import java.time.Duration;
-
 import static org.junit.Assert.assertTrue;
 
 @RunWith(Parameterized.class)
 // Через параметры в тест будем передавать одну из кнопок "Заказать" с главной страницы и значения параметров для всех полей формы заказа
-public class MakeOrder {
+public class MakeOrder extends BaseTest {
     private final String orderButton;
     private final String name;
     private final String surname;
@@ -52,20 +46,6 @@ public class MakeOrder {
                 {"orderInContextButton", "Петр", "Петров", "Улица", "Чеховская", "89212222222", "23.01.2023", 2, "", ""},
         };
     }
-    private WebDriver driver;
-
-    @Before
-    public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "C:\\WebDriver\\bin\\chromedriver.exe");
-        System.setProperty("webdriver.gecko.driver", "C:\\WebDriver\\bin\\geckodriver.exe");
-
-        // выбор браузера для прогона тестов:
-        driver = new ChromeDriver();
-        //driver = new FirefoxDriver();
-
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-    }
-
     @Test
     public void shouldMakeOrder() {
 
@@ -107,11 +87,6 @@ public class MakeOrder {
         orderPage.clickOrderConfirmationButton();
         //Проверка, что появилось окно подтверждения создания заказа "Заказ оформлен":
         assertTrue("Ожидаем появления подтверждения \"Заказ оформлен\".",orderPage.isOrderCompletedMsg());
-    }
-
-    @After
-    public void tearDown() {
-        driver.quit();
     }
 }
 
